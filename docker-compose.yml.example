@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  rss-to-signal-bridge:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - "./data:/data"
+    environment:
+      - SIGNAL_API_URL=http://127.0.0.1:8080/v2/send
+      - SIGNAL_SENDER_NUMBER=+44xxxxxxxxxx
+      - SIGNAL_DESTINATIONS=group.xxxxxxxxxxxxx=
+      - SIGNAL_FAKE_SEND=True
+      - RSS_FEED_URL=https://xxxxxxxxxxxxx
+      - MESSAGE_TEMPLATE=NEW STOCK ALERT\n\n{title}\n\n{summary}\n\n{link}\n\n{publish_timestamp}
+      - RSS_POLL_INTERVAL=120
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"
