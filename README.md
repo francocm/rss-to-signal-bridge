@@ -17,7 +17,7 @@ Polls RSS feed and publishes message onto Signal using [signal-cli-rest-api](htt
 ## Running (via docker-compose)
 
 1. `cp docker-compose.yml.example docker-compose.yml`
-2. Configure the environment variables (and any other relevant configuration) inside [docker-compose.yml](docker-compose.yml).
+2. Configure the environment variables (and any other relevant configuration) inside the copied `docker-compose.yml`.
 3. `docker-compose up -d`
 
 ### Important
