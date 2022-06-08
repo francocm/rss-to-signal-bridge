@@ -6,13 +6,13 @@ Polls RSS feed and publishes message onto Signal using [signal-cli-rest-api](htt
 
 | Key | Type | Required | Description | Example |
 | --- | ---- | -------- | ----------- | ------- |
-| `SIGNAL_API_URL` | String | Yes | http://127.0.0.1:8080/v2/send | The message send endpoint of your hosted [signal-cli-rest-api](https://github.com/bbernhard/signal-cli-rest-api) instance. | 
-| `SIGNAL_SENDER_NUMBER` | String | Yes | +44xxxxxxxxxx | The sender number as configured on your [signal-cli-rest-api](https://github.com/bbernhard/signal-cli-rest-api) instance. | 
+| `SIGNAL_API_URL` | String | Yes | `http://127.0.0.1:8080/v2/send` | The message send endpoint of your hosted [signal-cli-rest-api](https://github.com/bbernhard/signal-cli-rest-api) instance. | 
+| `SIGNAL_SENDER_NUMBER` | String | Yes | `+44xxxxxxxxxx` | The sender number as configured on your [signal-cli-rest-api](https://github.com/bbernhard/signal-cli-rest-api) instance. | 
 | `SIGNAL_DESTINATIONS` | String | Yes | `group.xxxxxxxxxxxxx=` (just 1 group) or comma separated numbers ex: `+44xxxxxxxxxx,+44yyyyyyyyyy` | The recipients of the message. If the recipient is a group, put just 1 group ID here, else comma separated list of numbers. For details on how to obtain the group ID follow the [signal-cli-rest-api documentation](https://github.com/bbernhard/signal-cli-rest-api/blob/master/doc/EXAMPLES.md). | 
-| `SIGNAL_FAKE_SEND` | Python Boolean | No | False | If `True`, no message is sent to Signal, and instead each message is printed into the logs. This is important whilst debugging / testing, to avoid overuse of the service. | 
-| `RSS_FEED_URL` | String | Yes | https://xxxxxxxxxxxxx | The RSS feed URL to poll. | 
-| `MESSAGE_TEMPLATE` | String | Yes | NEW STOCK ALERT\n\n{title}\n\n{summary}\n\n{link}\n\n{publish_timestamp} | The message template, The placeholders show in the example are replaced with the RSS content. Move these around / use these in whichever way you want. | 
-| `RSS_POLL_INTERVAL` | int | Yes | 120 | Number of seconds between each RSS poll interval. | 
+| `SIGNAL_FAKE_SEND` | Python Boolean | No | `False` | If `True`, no message is sent to Signal, and instead each message is printed into the logs. This is important whilst debugging / testing, to avoid overuse of the service. | 
+| `RSS_FEED_URL` | String | Yes | `https://xxxxxxxxxxxxx` | The RSS feed URL to poll. | 
+| `MESSAGE_TEMPLATE` | String | Yes | `NEW STOCK ALERT - {title}\n\nSummary: {summary}\n\nURL: {link}\n\nPublish timestamp: {publish_timestamp}` | The message template, The placeholders show in the example are replaced with the RSS content. Move these around / use these in whichever way you want. | 
+| `RSS_POLL_INTERVAL` | int | Yes | `120` | Number of seconds between each RSS poll interval. | 
 
 ## Running (via docker-compose)
 
