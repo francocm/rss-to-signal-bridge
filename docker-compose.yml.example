@@ -7,12 +7,14 @@ services:
       - "./data:/data"
     environment:
       - SIGNAL_API_URL=http://127.0.0.1:8080/v2/send
-      - SIGNAL_SENDER_NUMBER=+44xxxxxxxxxx
-      - SIGNAL_DESTINATIONS=group.xxxxxxxxxxxxx=
-      - SIGNAL_FAKE_SEND=True
-      - RSS_FEED_URL=https://xxxxxxxxxxxxx
-      - MESSAGE_TEMPLATE=NEW STOCK ALERT\n\n{title}\n\n{summary}\n\n{link}\n\n{publish_timestamp}
-      - RSS_POLL_INTERVAL=120
+      - SIGNAL_SENDER_NUMBER=+49xxxxxxxxxx
+      - SIGNAL_DESTINATIONS=group.xxxxxxxxxxxxx==,group.yyyyyyyyyyyyyy==
+#     - SIGNAL_DESTINATIONS=+49123456789
+#     - SIGNAL_DESTINATIONS=+49123456789,+491011121314
+      - SIGNAL_FAKE_SEND=False
+      - RSS_FEED_URL=https://peertube.instance/feeds/videos.xml?videoChannelId=ID
+      - MESSAGE_TEMPLATE=Check out my new video:\n\n**{title}**\n\n{link}
+      - RSS_POLL_INTERVAL=500
     logging:
       driver: "json-file"
       options:
