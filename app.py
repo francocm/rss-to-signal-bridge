@@ -36,14 +36,13 @@ def send_message(body):
         log.info("Body:\n%s" % body)
     else:
         r = requests.post(SIGNAL_API_URL, headers={"Content-Type":"application/json"},
-                json={"message": body, "recipients": DESTINATIONS, "number": SOURCE})
+                json={"message": body, "text_mode": "styled", "recipients": DESTINATIONS, "number": SOURCE})
         log.info("Message sent to Signal with HTTP response code %s and content %s" % (r.status_code, r.content))
 
-def format_message(template, title, summary, link, publish_timestamp):
+def format_message(template, title, link, publish_timestamp):
     result = template
     result = result.replace('\\n', '\n')
     result = result.replace('{title}', title)
-    result = result.replace('{summary}', summary)
     result = result.replace('{link}', link)
     result = result.replace('{publish_timestamp}', publish_timestamp)
     return result
@@ -76,7 +75,7 @@ def process_feed_response(feed):
         if epoch_publish_time <= last_processed_timestamp:
             continue
         last_processed_timestamp = epoch_publish_time
-        message = format_message(MESSAGE_TEMPLATE, entry.title, entry.summary, entry.link, entry.published)
+        message = format_message(MESSAGE_TEMPLATE, entry.title, entry.link, entry.published)
         send_message(message)
         new_messages_count = new_messages_count + 1
     set_last_processed_entry(last_processed_timestamp)
